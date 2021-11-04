@@ -23,7 +23,10 @@ class DirectorsController < ApplicationController
     render({ :template => "director_templates/show.html.erb"})
   end
 
-
-
+  def coolest
+    @coolest_director = Director.all.where.not({ :dob => nil }).order({ :dob => :desc }).at(0)
+    
+    render({ :template => "director_templates/coolest.html.erb"})
+  end
 
 end
